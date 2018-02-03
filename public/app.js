@@ -1,4 +1,17 @@
-// ==================  Home Tab - Render scraped articles ==================
+
+//  ====================
+//       AJAX Calls
+//  ====================
+//  1.  Home tab:  Render scraped articles
+//  2.  Saved tab - Render saved articles 
+//  3.  Scrape Tab - Scrape new articlesArticles (GET)
+//  4.  Dump Tab - Dumps article/note data
+//  5.  Article: Save/Unsave
+//  6.  Notes: Render
+//  7.  Notes: Add
+//  8.  Notes: Delete
+
+// ==================  1. Home Tab - Render scraped articles ==================
 $(document).on("click", "#home-tab", function() {
 
   $('#articles').empty();
@@ -27,7 +40,7 @@ $(document).on("click", "#home-tab", function() {
 
 
 
-// ==================  Saved Articles Tab - Render saved articles  ==================
+// ==================  2. Saved tab - Render saved articles  ==================
 $(document).on("click", "#saved-tab", function() {
 
   $('#articles').empty();
@@ -58,14 +71,14 @@ $(document).on("click", "#saved-tab", function() {
 });
 
 
-// ================== Scrape Tab - Scrape new articles ==================
+// ================== 3. Scrape Tab - Scrape new articles ==================
 $(document).on("click", "#scrape", function() {
   
   // clears articles & notes before scraping new
-  $.ajax({
-    method: "DELETE",
-    url: "/dump",
-  })
+  // $.ajax({
+  //   method: "DELETE",
+  //   url: "/dump",
+  // })
   
   // scrapes new articles
   $.ajax({
@@ -83,23 +96,23 @@ $(document).on("click", "#scrape", function() {
 });
 
 
-// // =============  Dump Tab - Dumps Database ==================
-// $(document).on("click", "#dump", function() {
-//   $.ajax({
-//     method: "DELETE",
-//     url: "/dump",
-//   })
+// // =============  4. Dump Tab - Dumps article/note data  ==================
+$(document).on("click", "#dump", function() {
+  $.ajax({
+    method: "DELETE",
+    url: "/dump",
+  })
 
-//   setTimeout(
-//     function() {
-//       $("#home-tab").click();
-//       $('#dump').removeClass("active");
-//     }, 1000);
+  setTimeout(
+    function() {
+      $("#home-tab").click();
+      $('#dump').removeClass("active");
+    }, 1000);
 
-// });
+});
 
 
-// =============  Save - Unsave article ==================
+// =============  5. Article: Save/Unsave  ==================
 $(document).on("click", ".save-btn", function() {
 
   var thisId = $(this).attr("data-id");
@@ -131,7 +144,7 @@ $(document).on("click", ".save-btn", function() {
 
 var thisId;
 
-// ================== Render Notes ==================
+// ================== 6. Notes: Render  ==================
 $(document).on("click", ".btn-info", function() {
 
   thisId = $(this).attr("data-id");
@@ -164,7 +177,7 @@ $(document).on("click", ".btn-info", function() {
 });
 
 
-// ================== Add Note ==================
+// ================== 7. Notes: Add  ==================
 $(document).on("click", "#note-add", function() {
 
   thisId = $(this).attr("data-id");
@@ -193,8 +206,10 @@ $(document).on("click", "#note-add", function() {
 });
 
 
-// ================== Delete Note ==================
+// ================== 8. Note: Delete ==================
 $(document).on("click", "#note-delete", function() {
+
+  thisId = $(this).attr("data-id");
 
   $.ajax({
     method: "DELETE",

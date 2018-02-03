@@ -69,25 +69,29 @@ app.listen(3000, function() {
 //  =================
 //       ROUTES
 //  =================
-//  1.  Scrape (GET)
-//  2.  Articles (GET)
-//  3.  Articles (GET by ID)
-//  4.  Articles (POST save-unsave)
-//  5.  Notes (POST add-delete)
+//  1.  Delete (article + notes)
+//  2.  Scrape (GET)
+//  3.  Articles (GET)
+//  4.  Articles (GET by ID)
+//  5.  Articles (POST save-unsave)
+//  6.  Notes (POST add-delete)
 
-// ============= 1. SCRAPE (GET) ==============
+// ============= 1. Delete (article + notes) ==============
 
 app.delete("/dump", function(req, res) {
+
   Article.remove({}).exec(function(){
     console.log("All articles deleted.")
   });
+
   Note.remove({}).exec(function(){
     console.log("All notes deleted.")
   });
+  
 });
 
 
-// ============= 1. SCRAPE (GET) ==============
+// ============= 2. SCRAPE (GET) ==============
 
 app.get("/scrape", function(req, res) {
 
@@ -115,7 +119,7 @@ app.get("/scrape", function(req, res) {
 });
 
 
-// ============= 2. Articles (GET) ==============
+// ============= 3. Articles (GET) ==============
 
 app.get("/articles", function(req, res) {
 
@@ -127,7 +131,7 @@ app.get("/articles", function(req, res) {
 });
 
 
-// ============= 3. Aritcle (GET by Id) ==============
+// ============= 4. Aritcle (GET by Id) ==============
 
 app.get("/articles/:id", function(req, res) {
 
@@ -139,7 +143,7 @@ app.get("/articles/:id", function(req, res) {
 });
 
 
-// ============= 4. Article (POST save-unsave) ==============
+// ============= 5. Article (POST save-unsave) ==============
 
 app.post("/articles/:action/:id/", function(req, res) {
 
@@ -157,7 +161,7 @@ app.post("/articles/:action/:id/", function(req, res) {
 });
 
 
-// ============= 5. Note (POST add-delete) ==============
+// ============= 6. Note (POST add-delete) ==============
 
 app.post("/note/add/:id", function(req, res) {
 
