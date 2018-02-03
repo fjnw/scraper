@@ -1,0 +1,61 @@
+body {
+    background-color: #F2F6D0 
+}
+
+.nav {
+    margin: 40px 0;
+}
+
+.jumbotron {
+    padding-left: 200px;   
+}
+
+#wrapper {    
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+}
+
+#articles {
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0, .2) inset;
+    overflow: auto;
+    display: block;
+    height: 600px;
+}
+
+.modal {
+
+}
+
+.card {
+    width: 600px;
+    margin: 30px auto;
+}
+
+.save-btn {
+    /* width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 620px;
+    top: 10px; */
+    position: absolute;
+    left: 525px;
+    top: 35px;
+}
+
+textarea, input {
+    display: block;
+    width: 100%;
+    background-color: #FCF5C7;
+}
+
+input {
+    height: 36px;
+    font-size: 24px;
+}
+
+textarea {
+    height: 200px;
+    font-size: 18px;
+}

@@ -9,62 +9,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>New York Times Scraper</title>
-    <style>
-      body { background-color: #F2F6D0 }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #articles {
-        display: inline-block;
-        overflow: auto;
-        width: 60%;
-        height: 700px;
-      }
-      .modal {
-
-      }
-      .card {
-        text-align: center;
-        margin: 20px 0;
-      }
-      textarea, input {
-        display: block;
-        width: 100%;
-        background-color: #FCF5C7;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
   <body>
 
     <!-- NAV BAR -->
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">SCRAPER LOGO</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Saved Articles</a>
-      </li>
-      <li class="nav-item">
-        <button type="button" class="btn btn-danger">
-          <a class="nav-link" href="#">Scrape New Articles</a>
-        </button>
-      </li>
-    </ul>
+    <div class="btn-group btn-group-toggle nav justify-content-center" data-toggle="buttons">
+      <label class="btn btn-secondary active" id="home-tab" >
+        <input type="radio" name="options" autocomplete="off" checked>Home
+      </label>
+      <label class="btn btn-secondary" id="saved-tab">
+        <input type="radio" name="options"  autocomplete="off">Saved Article
+      </label>
+      <button type="button" id="scrape" class="btn btn-outline-danger">Scrape New Articles</button>
+    </div>
 
     <!-- Welcome -->
     <div class="jumbotron jumbotron-fluid">
@@ -74,8 +33,6 @@
 
     <!-- Scraped -->
     <div id="wrapper">
-      <h1>NYT Articles Scraper</h1>
-      <br><br><br>
       <div id="articles"></div>
     </div>
 
@@ -96,14 +53,10 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
     </div>
-
-
-
 
 
 
@@ -119,57 +72,3 @@
 
   </body>
 </html>
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
-    <style>
-      body { background-color: #F2F6D0 }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #articles {
-        display: inline-block;
-        overflow: auto;
-        width: 60%;
-        height: 700px;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      textarea, input {
-        display: block;
-        width: 100%;
-        background-color: #FCF5C7;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-  </body>
-</html>
- -->

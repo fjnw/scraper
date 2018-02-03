@@ -50,7 +50,7 @@ db.once("open", function() {
 
 
 // Routes
-// ======
+// ============= SCRAPE ==============
 
 // A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
@@ -90,6 +90,9 @@ app.get("/scrape", function(req, res) {
   res.send("New York Times articles scraped!");
 });
 
+
+// ============= GET Articles ==============
+
 // This will get the articles we scraped from the mongoDB
 app.get("/articles", function(req, res) {
   // Grab every doc in the Articles array
@@ -104,6 +107,9 @@ app.get("/articles", function(req, res) {
     }
   });
 });
+
+
+// ============= Get Aritcle by ID ==============
 
 // Grab an article by it's ObjectId
 app.get("/articles/:id", function(req, res) {
@@ -124,6 +130,44 @@ app.get("/articles/:id", function(req, res) {
   });
 });
 
+
+// ============= Save/Unsave Article ==============
+
+// Save Article
+app.post("/articles/:action/:id/", function(req, res) {
+
+  var id = req.params.id;
+  var boolean = req.params.action;
+
+  //console.log("Booleon begins with: " + boolean);
+
+  if (boolean === "add") {
+    boolean = true;
+    //console.log("boolean changed to :" + boolean);
+  } else if (boolean === "remove") {
+    boolean = false;
+    //console.log("boolean changed to :" + boolean);
+  }
+
+  //console.log("boolean before update: " + boolean)
+
+  // Use the article id to save
+  Article.findOneAndUpdate({ "_id": id}, { "saved": boolean })
+  // Execute the above query
+  .exec(function(err, doc) {
+    // Log any errors
+    if (err) {
+      console.log(err)
+    } else {
+      // respond document to browser console
+      res.send(doc);
+      //console.log(doc.saved)
+    }
+  });
+
+});
+
+// ============= Update Notes ==============
 
 // Create a new note or replace an existing note
 app.post("/articles/:id", function(req, res) {
@@ -153,6 +197,58 @@ app.post("/articles/:id", function(req, res) {
       });
     }
   });
+});
+
+
+// ============= Add/Delete Note ==============
+
+// Create a new note or replace an existing note
+app.post("/note/:action/:id", function(req, res) {
+  
+  var action = req.params.action;
+  var id = req.params.id;
+  // Create a new note and pass the req.body to the entry
+  var newNote = new Note(req.body);
+
+  if (req.params.actions === "add") {
+
+    // Articles.create({body: newNote}).exec(function(err, doc) {
+      Article.findOneAndUpdate({$push: { "note": doc._id }})
+      if (err) console.log(err);
+      else res.send(doc);
+
+    // // And save the new note the db
+    // newNote.save(function(error, doc) {
+    //   // Log any errors
+    //   if (error) {
+    //     console.log(error);
+    //   }
+    //   // Otherwise
+    //   else {
+    //     // Use the article id to find and update it's note
+    //     Article.findOneAndUpdate({ "_id": req.params.id }, { "note": doc._id })
+    //     // Execute the above query
+    //     .exec(function(err, doc) {
+    //       // Log any errors
+    //       if (err) {
+    //         console.log(err);
+    //       }
+    //       else {
+    //         // Or send the document to the browser
+    //         res.send(doc);
+    //       }
+    //     });
+    //   }
+    // });
+
+  } else if (action === "delete") {
+    console.log(1);
+    Note.findOneAndRemove({"_id": id}, function(err) {
+      if (err) console.log("Error deleting note: " + err)
+      else console.log("Note deleted: " + id);
+    });
+  };
+
 });
 
 
