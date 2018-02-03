@@ -14,24 +14,27 @@
 
   <body>
 
-    <!-- NAV BAR -->
+
+    <!-- Nav Bar -->
     <div class="btn-group btn-group-toggle nav justify-content-center" data-toggle="buttons">
-      <label class="btn btn-secondary active" id="home-tab" >
+      <label class="btn btn-outline-secondary active" id="home-tab" >
         <input type="radio" name="options" autocomplete="off" checked>Home
       </label>
-      <label class="btn btn-secondary" id="saved-tab">
+      <label class="btn btn-outline-secondary" id="saved-tab">
         <input type="radio" name="options"  autocomplete="off">Saved Article
       </label>
-      <button type="button" id="scrape" class="btn btn-outline-danger">Scrape New Articles</button>
+      <button type="button" id="scrape" class="btn btn-outline-success">Scrape New Articles</button>
+      <!-- <button type="button" id="dump" class="btn btn-outline-danger">Dump All Data</button> -->
     </div>
 
-    <!-- Welcome -->
+    <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
       <h1 class="display-4">New York Times Scraper!</h1>
       <p class="lead">This is a simple Mongo scraper.</p>
     </div>
 
-    <!-- Scraped -->
+
+    <!-- Articles -->
     <div id="wrapper">
       <div id="articles"></div>
     </div>
@@ -48,17 +51,13 @@
             </button>
           </div>
 
-          <div class="modal-body">
+          <div class="modal-body text-center">
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+         
         </div>
       </div>
     </div>
-
-
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
