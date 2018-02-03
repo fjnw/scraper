@@ -142,9 +142,11 @@ $(document).on("click", ".save-btn", function() {
   }
 });
 
-var thisId;
+
 
 // ================== 6. Notes: Render  ==================
+var thisId;
+
 $(document).on("click", ".btn-info", function() {
 
   thisId = $(this).attr("data-id");
@@ -156,9 +158,9 @@ $(document).on("click", ".btn-info", function() {
   }).done(function(data) {
 
       $(".modal-title").append("Title: " + data.title);
-
+      
       if (data.note.length > 0) {
-        for (i=0; i<data.note.length; i++) {
+        for (i=data.note.length-1; i>=0; i--) {
           $(".modal-body").append(
             '<div class="card note-card">' +
               '<div class="card-body">' +
